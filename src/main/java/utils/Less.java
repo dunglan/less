@@ -16,7 +16,6 @@ public class Less {
 		this.bufferSize = bufferSize;
 	}
 	
-
 	/**
 	 * Retrieve last N lines of file.
 	 * Use tiny amount of memory, runs fast, and can process huge files.
@@ -48,20 +47,20 @@ public class Less {
 		
 			while(!foundStart) {
 				
-				//Hit the the beginning of file.
+				//Start is at the beginning of the file. Exit loop.
 				if(start == 0) {
 					foundStart = true;
 				}
 				else {
 			
-					//Move start backwards
+					//Move start backwards in buffsize chunks
 		 			int len = bufferSize;
 					start -=bufferSize;
 					
 					//If start is negative, we've hit the beginning of the file.
 					if(start < 0) {
 						
-						//Buffer size to read is negative
+						//Subtract negative value from start size we don't read too much.
 						len =  bufferSize + Math.toIntExact(start) +-1; 
 						start=0;	
 					}
